@@ -51,10 +51,24 @@
 									</ul>
 								</li> 
 								<li class="nav-item">
-                                    <a class="nav-link" href="#">Register</a></li> 
+                                    <a class="nav-link" href="{% url "register" %}">Register</a></li> 
 
 								</li>  
-								<li class="nav-item"><a class="nav-link" href="contact.html">Login</a></li>
+								<style>
+									.custom-height-btn {
+										height: 30px;
+										font-size: 15px;
+										padding: 5px
+										
+									}
+								</style>
+								
+								{% comment %} <li class="nav-item"><a class="nav-link" href="contact.html">Login</a></li> {% endcomment %}
+								<li class="nav-item">
+									<a href="{% url "login" %}"><button type="button" class="btn btn-success custom-height-btn nav-link" data-toggle="modal" data-target="#loginModal">
+										Log in
+									</button></a>
+								</li>
 							</ul>
 						</div> 
 					</div>

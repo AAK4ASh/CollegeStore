@@ -1,0 +1,176 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!-- Created By CodingLab - www.codinglabweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <title> Responsive Registration Form | CodingLab </title>
+    <link rel="stylesheet" href="{% static "css/form.css" %}">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+
+
+
+
+  
+  <div class="container">
+    <div class="title"> Fill the Form</div>
+    <div class="content">
+      <form action="#">
+        <div class="user-details">
+          <div class="input-box">
+            <span class="details">Name</span>
+            <input type="text" placeholder="Enter your name" required>
+          </div>
+          <div class="input-box">
+            <span class="details">DOB</span>
+            <input type="date" placeholder="Enter your username" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Age</span>
+            <input type="number" placeholder="Age" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Address</span>
+            <input type="text" placeholder="Address" required>
+          </div>
+          <div class="gender-details">
+            <input type="radio" name="gender" id="dot-1">
+            <input type="radio" name="gender" id="dot-2">
+            <span class="gender-title">Gender</span>
+            <div class="category">
+              <label for="dot-1">
+              <span class="dot one"></span>
+              <span class="gender">Male</span>
+            </label>
+            <label for="dot-2">
+              <span class="dot two"></span>
+              <span class="gender">Female</span>
+            </label>
+            
+            </div>
+          </div>
+          <div class="input-box">
+            <span class="details">Phone Number</span>
+            <input type="number" placeholder="Phone Number" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Email</span>
+            <input type="email" placeholder="Email" required>
+          </div>
+          
+              <div class="input-box">
+          <span class="details">Department</span>
+          <select id="department" name="department" required class="select">
+            <option value="arts">Arts</option>
+            <option value="commerce">Commerce</option>
+            <option value="science">Science</option>
+            <!-- Add other departments as needed -->
+          </select>
+        </div>
+
+        <div class="input-box">
+          <span class="details">Courses</span>
+          <select id="courses" name="courses" required class="select">
+            <!-- Courses will be dynamically populated based on the selected department -->
+          </select>
+        </div>
+
+   
+      <div class="input-box">
+        <span class="details">Purpose</span>
+        <select id="department" name="department" required class="select">
+          <option value="arts">For Enquiry</option>
+          <option value="commerce">Place Order</option>
+          <option value="science">Return Order</option>
+          <!-- Add other departments as needed -->
+        </select>
+      </div>
+      <div>
+      <form action="{% url "message" %}" method='post'>
+        {% csrf_token %}
+        <label class="details" >Materials:</label>
+        <label>
+            <input type="checkbox" name="debitNoteBook"> Debit Note Book
+        </label>
+        <label>
+            <input type="checkbox" name="pen"> Pen
+        </label>
+        <label>
+            <input type="checkbox" name="examPapers"> Exam Papers
+        </label>
+        <!-- Add more checkboxes as needed -->
+        {% comment %} <a href="{% url "login" %}"><button type="button" class="btn btn-success custom-height-btn nav-link" data-toggle="modal" data-target="#loginModal">
+          Log in
+        </button></a> {% endcomment %}
+    
+        <br>
+        <div >
+          <a href="{% url "message" %}"><button type="button" class="btn btn-success custom-height-btn link" data-toggle="modal" data-target="#loginModal">
+            Register
+          </button></a>        </div>
+          <br>
+        <div>
+          <a href="{% url "logout" %}"><button type="button" class="btn btn-success custom-height-btn link" data-toggle="modal" data-target="#loginModal">
+            Log out
+          </button></a>
+
+        </div>
+       
+    </form>
+  </div>
+    </div>
+    
+  </div>
+
+  <script>
+    // JavaScript code for dependent dropdown
+    document.getElementById('department').addEventListener('change', function () {
+      var department = this.value;
+      var coursesDropdown = document.getElementById('courses');
+
+      // Clear previous options
+      coursesDropdown.innerHTML = '';
+
+      // Add new options based on the selected department
+      if (department === 'arts') {
+        addOption(coursesDropdown, 'fine_arts', 'Fine Arts');
+        addOption(coursesDropdown, 'literature', 'Literature');
+        addOption(coursesDropdown, 'music', 'Music');
+
+        // Add other courses for the Arts department as needed
+      } else if (department === 'commerce') {
+        addOption(coursesDropdown, 'bba', 'BBA');
+        addOption(coursesDropdown, 'bcom', 'BCom');
+        addOption(coursesDropdown, 'bcom tax', 'BCom Tax');
+        addOption(coursesDropdown, 'bcom finance', 'BCom Finance');
+
+        // Add other courses for the Commerce department as needed
+      } else if (department === 'science') {
+        addOption(coursesDropdown, 'physics', 'Physics');
+        addOption(coursesDropdown, 'computer', 'Computer');
+        addOption(coursesDropdown, 'chemistry', 'Chemistry');
+        addOption(coursesDropdown, 'biology', 'Biology');
+
+        // Add other courses for the Science department as needed
+      }
+    });
+
+    // Function to add options to a dropdown
+    function addOption(selectElement, value, text) {
+      var option = document.createElement('option');
+      option.value = value;
+      option.text = text;
+      selectElement.add(option);
+    }
+  </script>
+  
+
+
+      <!-- Add other departments as needed -->
+    </select>
+  </div>
+</body>
+</html>
